@@ -17,12 +17,21 @@ public class AxiumAPI {
         return restTemplate.getForObject(new URI(url), AxiumAccount.class);
     }
 
-    public static AxiumAccount login(String token) throws URISyntaxException {
+    public static PublicAxiumAccount getPublicInfos(String username) throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/user/tokenConnect?token=" + token;
+        String url = "https://axium-website.herokuapp.com/api/user/?username=" + username;
 
-        return restTemplate.getForObject(new URI(url), AxiumAccount.class);
+        return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
+    }
+
+    public static PublicAxiumAccount getPublicInfos(Integer id) throws URISyntaxException {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "https://axium-website.herokuapp.com/api/user/?id=" + id;
+
+        return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
     }
 }
