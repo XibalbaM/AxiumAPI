@@ -19,8 +19,6 @@ public class ApiTest {
 
         System.out.println(login);
 
-        System.out.println(AxiumAPI.login(login.getToken()));
-
         login.logout();
 
         assertNull(login.getToken());
