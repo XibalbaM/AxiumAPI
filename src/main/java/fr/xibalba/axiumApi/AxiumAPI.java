@@ -34,4 +34,31 @@ public class AxiumAPI {
 
         return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
     }
+
+    public static AxiumRole getRole(Integer id) throws URISyntaxException {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "https://axium-website.herokuapp.com/api/roles/?id=" + id;
+
+        return restTemplate.getForObject(new URI(url), AxiumRole.class);
+    }
+
+    public static AxiumRole getRole(String name) throws URISyntaxException {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "https://axium-website.herokuapp.com/api/roles/?name=" + name;
+
+        return restTemplate.getForObject(new URI(url), AxiumRole.class);
+    }
+
+    public static AxiumRole[] getRoles() throws URISyntaxException {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "https://axium-website.herokuapp.com/api/roles/";
+
+        return restTemplate.getForObject(new URI(url), AxiumRole[].class);
+    }
 }
