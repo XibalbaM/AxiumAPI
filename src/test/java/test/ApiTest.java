@@ -2,6 +2,7 @@ package test;
 
 import fr.xibalba.axiumApi.AxiumAPI;
 import fr.xibalba.axiumApi.AxiumAccount;
+import fr.xibalba.axiumApi.AxiumGame;
 import fr.xibalba.axiumApi.AxiumRole;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,14 @@ public class ApiTest {
         AxiumRole[] role = AxiumAPI.getRoles();
         assertEquals(3, role.length);
         assertEquals(role[0].getName(), "role");
+    }
+
+
+    @Test
+    public void testGame() throws URISyntaxException {
+
+        AxiumGame[] role = AxiumAPI.getGames();
+        assertEquals(2, role.length);
+        assertEquals(role[0].getName(), "Test");
     }
 }
