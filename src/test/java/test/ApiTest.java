@@ -20,6 +20,7 @@ public class ApiTest {
         AxiumAccount login = AxiumAPI.login("test", "testMDP");
 
         System.out.println(login);
+        System.out.println(AxiumAPI.getAccountPublicInfos(0));
 
         login.logout();
 

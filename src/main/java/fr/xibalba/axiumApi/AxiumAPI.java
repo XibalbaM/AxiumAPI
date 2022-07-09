@@ -17,7 +17,7 @@ public class AxiumAPI {
         return restTemplate.getForObject(new URI(url), AxiumAccount.class);
     }
 
-    public static PublicAxiumAccount getPublicInfos(String username) throws URISyntaxException {
+    public static PublicAxiumAccount getAccountPublicInfos(String username) throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -26,7 +26,7 @@ public class AxiumAPI {
         return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
     }
 
-    public static PublicAxiumAccount getPublicInfos(Integer id) throws URISyntaxException {
+    public static PublicAxiumAccount getAccountPublicInfos(Integer id) throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
