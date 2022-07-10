@@ -10,6 +10,8 @@ import java.net.URI;
  */
 public class AxiumAPI {
 
+    public static final String API_URL = "https://axium-website.herokuapp.com/api";
+
     /**
      * Used to obtain or generate the token for the account.
      * It is reset by the logout method and after one month.
@@ -26,7 +28,7 @@ public class AxiumAPI {
         RestTemplate restTemplate = new RestTemplate();
 
         String url =
-                "https://axium-website.herokuapp.com/api/user/connect?username=" + username + "&password=" + password;
+                API_URL + "/user/connect?username=" + username + "&password=" + password;
 
         return restTemplate.getForObject(new URI(url), AxiumAccount.class);
     }
@@ -43,7 +45,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/user/?username=" + username;
+        String url = API_URL + "/user/?username=" + username;
 
         return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
     }
@@ -60,7 +62,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/user/?id=" + id;
+        String url = API_URL + "/user/?id=" + id;
 
         return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
     }
@@ -77,7 +79,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/roles/?id=" + id;
+        String url = API_URL + "/api/roles/?id=" + id;
 
         return restTemplate.getForObject(new URI(url), AxiumRole.class);
     }
@@ -94,7 +96,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/roles/?name=" + name;
+        String url = API_URL + "/roles/?name=" + name;
 
         return restTemplate.getForObject(new URI(url), AxiumRole.class);
     }
@@ -109,7 +111,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/roles/";
+        String url = API_URL + "/roles/";
 
         return restTemplate.getForObject(new URI(url), AxiumRole[].class);
     }
@@ -126,7 +128,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/game/?id=" + id;
+        String url = API_URL + "/game/?id=" + id;
 
         return restTemplate.getForObject(new URI(url), AxiumGame.class);
     }
@@ -143,7 +145,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/game/?name=" + name;
+        String url = API_URL + "/game/?name=" + name;
 
         return restTemplate.getForObject(new URI(url), AxiumGame.class);
     }
@@ -158,7 +160,7 @@ public class AxiumAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://axium-website.herokuapp.com/api/game/";
+        String url = API_URL + "/game/";
 
         return restTemplate.getForObject(new URI(url), AxiumGame[].class);
     }

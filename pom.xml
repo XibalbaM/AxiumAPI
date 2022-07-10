@@ -75,14 +75,6 @@
                     <finalName>${project.artifactId}-${project.version}</finalName>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>dependency-maven-plugin</artifactId>
-                <version>1.0</version>
-                <configuration>
-                    <outputDirectory>target</outputDirectory>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
