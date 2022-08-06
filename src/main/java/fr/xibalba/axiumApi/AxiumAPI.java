@@ -1,16 +1,21 @@
 package fr.xibalba.axiumApi;
 
 import lombok.SneakyThrows;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.net.URI;
+import static org.springframework.web.reactive.function.client.WebClient.RequestBodySpec;
+import static org.springframework.web.reactive.function.client.WebClient.UriSpec;
 
 /**
  * The core of the Axium API, from here you can get servers object to do actions on.
  */
+@SuppressWarnings("unckecked")
 public class AxiumAPI {
 
-    public static final String API_URL = "https://axium-website.herokuapp.com/api";
+    public static final String API_URL = "https://axium-centrality.herokuapp.com/api";
+    private static final WebClient client = WebClient.create(API_URL);
 
     /**
      * Used to obtain or generate the token for the account.
@@ -23,14 +28,10 @@ public class AxiumAPI {
      * @return The account.
      */
     @SneakyThrows
-    public static AxiumAccount login(String username, String password) {
+    public static RestResponse<AxiumAccount> login(String username, String password) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url =
-                API_URL + "/user/connect?username=" + username + "&password=" + password;
-
-        return restTemplate.getForObject(new URI(url), AxiumAccount.class);
+        return doRequest("/user/connect?username=" + username + "&password=" + password,
+                new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -41,13 +42,9 @@ public class AxiumAPI {
      * @return The account.
      */
     @SneakyThrows
-    public static PublicAxiumAccount getAccountPublicInfos(String username) {
+    public static RestResponse<PublicAxiumAccount> getAccountPublicInfos(String username) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/user/?username=" + username;
-
-        return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
+        return doRequest("/user/?username=" + username, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -58,13 +55,9 @@ public class AxiumAPI {
      * @return The account publics datas.
      */
     @SneakyThrows
-    public static PublicAxiumAccount getAccountPublicInfos(int id) {
+    public static RestResponse<PublicAxiumAccount> getAccountPublicInfos(int id) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/user/?id=" + id;
-
-        return restTemplate.getForObject(new URI(url), PublicAxiumAccount.class);
+        return doRequest("/user/?id=" + id, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -75,13 +68,9 @@ public class AxiumAPI {
      * @return The role information.
      */
     @SneakyThrows
-    public static AxiumRole getRole(int id) {
+    public static RestResponse<AxiumRole> getRole(int id) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/api/roles/?id=" + id;
-
-        return restTemplate.getForObject(new URI(url), AxiumRole.class);
+        return doRequest("/api/roles/?id=" + id, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -92,13 +81,9 @@ public class AxiumAPI {
      * @return The role information.
      */
     @SneakyThrows
-    public static AxiumRole getRole(String name) {
+    public static RestResponse<AxiumRole> getRole(String name) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/roles/?name=" + name;
-
-        return restTemplate.getForObject(new URI(url), AxiumRole.class);
+        return doRequest("/roles/?name=" + name, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -107,13 +92,9 @@ public class AxiumAPI {
      * @return The role list.
      */
     @SneakyThrows
-    public static AxiumRole[] getRoles() {
+    public static RestResponse<AxiumRole[]> getRoles() {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/roles/";
-
-        return restTemplate.getForObject(new URI(url), AxiumRole[].class);
+        return doRequest("/roles/", new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -124,13 +105,9 @@ public class AxiumAPI {
      * @return The game information.
      */
     @SneakyThrows
-    public static AxiumGame getGame(int id) {
+    public static RestResponse<AxiumGame> getGame(int id) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/game/?id=" + id;
-
-        return restTemplate.getForObject(new URI(url), AxiumGame.class);
+        return doRequest("/game/?id=" + id, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -141,13 +118,9 @@ public class AxiumAPI {
      * @return The game information.
      */
     @SneakyThrows
-    public static AxiumGame getGame(String name) {
+    public static RestResponse<AxiumGame> getGame(String name) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = API_URL + "/game/?name=" + name;
-
-        return restTemplate.getForObject(new URI(url), AxiumGame.class);
+        return doRequest("/game/?name=" + name, new ParameterizedTypeReference<>() {});
     }
 
     /**
@@ -156,12 +129,16 @@ public class AxiumAPI {
      * @return The game list.
      */
     @SneakyThrows
-    public static AxiumGame[] getGames() {
+    public static RestResponse<AxiumGame[]> getGames() {
 
-        RestTemplate restTemplate = new RestTemplate();
+        return doRequest("/game/", new ParameterizedTypeReference<>() {});
+    }
 
-        String url = API_URL + "/game/";
+    private static <T> RestResponse<T> doRequest(String relativeUrl, ParameterizedTypeReference<RestResponse<T>> type) {
 
-        return restTemplate.getForObject(new URI(url), AxiumGame[].class);
+        UriSpec<WebClient.RequestBodySpec> uriSpec = client.method(HttpMethod.GET);
+        RequestBodySpec bodySpec = uriSpec.uri(relativeUrl);
+        System.out.println(bodySpec.retrieve().bodyToMono(String.class).block());
+        return bodySpec.retrieve().bodyToMono(type).block();
     }
 }
