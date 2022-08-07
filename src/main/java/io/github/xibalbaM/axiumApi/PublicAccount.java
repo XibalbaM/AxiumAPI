@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * The public version of the {@Link fr.xibalba.axiumApi.AxiumAccount}.
+ * The public version of the {@link Account}.
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PublicAxiumAccount {
+public class PublicAccount {
 
     /**
      * The id of the account.
@@ -77,10 +77,10 @@ public class PublicAxiumAccount {
     /**
      * The games of the account.
      */
-    List<AxiumGame> games;
+    List<Game> games;
 
     /**
      * The roles of the account.
      */
-    List<AxiumRole> roles;
+    List<Role> roles;
 }

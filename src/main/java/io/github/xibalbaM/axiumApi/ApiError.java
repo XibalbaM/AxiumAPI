@@ -1,18 +1,33 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import java.util.Arrays;
 
+/**
+ * An error returned by the API.
+ */
 public interface ApiError {
 
+    /**
+     * @return The error message.
+     */
     String getMessage();
 
+    /**
+     * @return The name of the type of error.
+     */
     default String getType() {
 
         return this.getClass().getSimpleName().toLowerCase();
     }
 
+    /**
+     * @return The code of the error. Unique for each error type.
+     */
     int getCode();
 
+    /**
+     * An enum that contains all global errors.
+     */
     enum Global implements ApiError {
 
         MISSING_PARAMETER("Missing parameter"),
@@ -45,6 +60,9 @@ public interface ApiError {
     }
 
 
+    /**
+     * An enum that contains all errors related to account.
+     */
     enum Account implements ApiError {
 
         ACCOUNT_NOT_FOUND("Account not found"),
@@ -85,6 +103,9 @@ public interface ApiError {
     }
 
 
+    /**
+     * An enum that contains all errors related to roles.
+     */
     enum Role implements ApiError {
 
         ROLE_NOT_FOUND("Role not found"),
@@ -119,6 +140,9 @@ public interface ApiError {
     }
 
 
+    /**
+     * An enum that contains all errors related to permissions.
+     */
     enum Permission implements ApiError {
 
         PERMISSION_NOT_FOUND("Permission not found"),

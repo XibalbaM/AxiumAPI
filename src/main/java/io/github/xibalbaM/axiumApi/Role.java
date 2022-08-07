@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AxiumRole {
+public class Role {
 
     /**
      * The id of the role.
@@ -66,5 +66,5 @@ public class AxiumRole {
     /**
      * The list of accounts who have this role.
      */
-    List<AxiumAccount> accounts;
+    List<Account> accounts;
 }

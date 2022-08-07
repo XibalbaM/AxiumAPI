@@ -1,6 +1,6 @@
 package test;
 
-import fr.xibalba.axiumApi.*;
+import io.github.xibalbaM.axiumApi.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class ApiTest {
     @Test
     public void testLogin() throws URISyntaxException, IOException {
 
-        RestResponse<AxiumAccount> login = AxiumAPI.login("test", "testMDP");
+        RestResponse<Account> login = AxiumAPI.login("test", "testMDP");
 
         assertFalse(login.hasError());
 
@@ -27,11 +27,11 @@ public class ApiTest {
     @Test
     public void testRole() throws URISyntaxException {
 
-        RestResponse<AxiumRole[]> response = AxiumAPI.getRoles();
+        RestResponse<Role[]> response = AxiumAPI.getRoles();
 
         assertFalse(response.hasError());
 
-        AxiumRole[] role = response.getData();
+        Role[] role = response.getData();
         assertEquals(3, role.length);
         assertEquals(role[0].getName(), "role");
     }
@@ -40,11 +40,11 @@ public class ApiTest {
     @Test
     public void testGame() throws URISyntaxException {
 
-        RestResponse<AxiumGame[]> response = AxiumAPI.getGames();
+        RestResponse<Game[]> response = AxiumAPI.getGames();
 
         assertFalse(response.hasError());
 
-        AxiumGame[] role = response.getData();
+        Game[] role = response.getData();
         assertEquals(2, role.length);
         assertEquals(role[0].getName(), "Test");
     }

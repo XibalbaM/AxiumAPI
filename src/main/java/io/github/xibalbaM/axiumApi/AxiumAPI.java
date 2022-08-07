@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import lombok.SneakyThrows;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,7 +20,7 @@ public class AxiumAPI {
     /**
      * Used to obtain or generate the token for the account.
      * It is reset by the logout method and after one month.
-     * <h2>Never store the password, store only the token.</h2>
+     * Never store the password, store only the token.
      *
      * @param username The username of the account to connect to.
      * @param password The password of the account to connect to.
@@ -28,7 +28,7 @@ public class AxiumAPI {
      * @return The account.
      */
     @SneakyThrows
-    public static RestResponse<AxiumAccount> login(String username, String password) {
+    public static RestResponse<Account> login(String username, String password) {
 
         return doRequest("/user/connect?username=" + username + "&password=" + password,
                 new ParameterizedTypeReference<>() {});
@@ -42,7 +42,7 @@ public class AxiumAPI {
      * @return The account.
      */
     @SneakyThrows
-    public static RestResponse<PublicAxiumAccount> getAccountPublicInfos(String username) {
+    public static RestResponse<PublicAccount> getAccountPublicInfos(String username) {
 
         return doRequest("/user/?username=" + username, new ParameterizedTypeReference<>() {});
     }
@@ -55,7 +55,7 @@ public class AxiumAPI {
      * @return The account publics datas.
      */
     @SneakyThrows
-    public static RestResponse<PublicAxiumAccount> getAccountPublicInfos(int id) {
+    public static RestResponse<PublicAccount> getAccountPublicInfos(int id) {
 
         return doRequest("/user/?id=" + id, new ParameterizedTypeReference<>() {});
     }
@@ -68,7 +68,7 @@ public class AxiumAPI {
      * @return The role information.
      */
     @SneakyThrows
-    public static RestResponse<AxiumRole> getRole(int id) {
+    public static RestResponse<Role> getRole(int id) {
 
         return doRequest("/api/roles/?id=" + id, new ParameterizedTypeReference<>() {});
     }
@@ -81,7 +81,7 @@ public class AxiumAPI {
      * @return The role information.
      */
     @SneakyThrows
-    public static RestResponse<AxiumRole> getRole(String name) {
+    public static RestResponse<Role> getRole(String name) {
 
         return doRequest("/roles/?name=" + name, new ParameterizedTypeReference<>() {});
     }
@@ -92,7 +92,7 @@ public class AxiumAPI {
      * @return The role list.
      */
     @SneakyThrows
-    public static RestResponse<AxiumRole[]> getRoles() {
+    public static RestResponse<Role[]> getRoles() {
 
         return doRequest("/roles/", new ParameterizedTypeReference<>() {});
     }
@@ -105,7 +105,7 @@ public class AxiumAPI {
      * @return The game information.
      */
     @SneakyThrows
-    public static RestResponse<AxiumGame> getGame(int id) {
+    public static RestResponse<Game> getGame(int id) {
 
         return doRequest("/game/?id=" + id, new ParameterizedTypeReference<>() {});
     }
@@ -118,7 +118,7 @@ public class AxiumAPI {
      * @return The game information.
      */
     @SneakyThrows
-    public static RestResponse<AxiumGame> getGame(String name) {
+    public static RestResponse<Game> getGame(String name) {
 
         return doRequest("/game/?name=" + name, new ParameterizedTypeReference<>() {});
     }
@@ -129,7 +129,7 @@ public class AxiumAPI {
      * @return The game list.
      */
     @SneakyThrows
-    public static RestResponse<AxiumGame[]> getGames() {
+    public static RestResponse<Game[]> getGames() {
 
         return doRequest("/game/", new ParameterizedTypeReference<>() {});
     }

@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -15,7 +15,7 @@ import java.sql.Date;
 @ToString
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AxiumGame {
+public class Game {
 
     /**
      * The id of the game.

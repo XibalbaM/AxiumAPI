@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import lombok.*;
 import lombok.experimental.Accessors;

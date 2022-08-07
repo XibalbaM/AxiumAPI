@@ -1,4 +1,4 @@
-package fr.xibalba.axiumApi;
+package io.github.xibalbaM.axiumApi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -19,7 +19,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AxiumAccount {
+public class Account {
 
     /**
      * The id of the account.
@@ -90,12 +90,12 @@ public class AxiumAccount {
     /**
      * The list of the games owned by the account.
      */
-    List<AxiumGame> games;
+    List<Game> games;
 
     /**
      * The list of the roles of the account.
      */
-    List<AxiumRole> roles;
+    List<Role> roles;
 
     /**
      * Used to reset the token.
