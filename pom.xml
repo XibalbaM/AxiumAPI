@@ -13,7 +13,7 @@
 
     <groupId>io.github.XibalbaM</groupId>
     <artifactId>AxiumAPI</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <name>Axium API</name>
     <description>
         A client for the Axium API, available at https://axium-centrality.herokuapp.com/api/ for the moment.

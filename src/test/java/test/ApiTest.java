@@ -13,6 +13,7 @@ public class ApiTest {
     @Test
     public void testLogin() throws URISyntaxException, IOException {
 
+        AxiumAPI.setApiUrl("http://localhost:8080/api");
         RestResponse<Account> login = AxiumAPI.login("test", "testMDP");
 
         assertFalse(login.hasError());

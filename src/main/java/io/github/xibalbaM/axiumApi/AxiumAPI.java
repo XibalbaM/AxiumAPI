@@ -13,8 +13,19 @@ import static org.springframework.web.reactive.function.client.WebClient.UriSpec
 @SuppressWarnings("unckecked")
 public class AxiumAPI {
 
-    private static final String API_URL = "https://axium-centrality.herokuapp.com/api";
-    private static final WebClient client = WebClient.create(API_URL);
+    private static String API_URL = "https://axium-centrality.herokuapp.com/api";
+    private static WebClient client = WebClient.create(API_URL);
+
+    /**
+     * Change the API URL. Used for testing.
+     *
+     * @param API_URL The new API URL.
+     */
+    public static void setApiUrl(String API_URL) {
+
+        AxiumAPI.API_URL = API_URL;
+        client = WebClient.create(API_URL);
+    }
 
     /**
      * Used to obtain or generate the token for the account, witch is reset by the logout method and after one month.
