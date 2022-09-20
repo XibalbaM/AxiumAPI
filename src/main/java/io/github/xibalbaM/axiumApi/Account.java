@@ -76,12 +76,6 @@ public class Account {
     int premium;
 
     /**
-     * If the email of the account is confirmed.
-     * Default value is false.
-     */
-    boolean emailVerified;
-
-    /**
      * If the account is enabled.
      * False if the account have a role like BANNED or DISABLED.
      */

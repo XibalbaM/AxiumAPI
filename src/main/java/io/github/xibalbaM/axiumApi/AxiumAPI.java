@@ -149,7 +149,6 @@ public class AxiumAPI {
 
         UriSpec<WebClient.RequestBodySpec> uriSpec = client.method(HttpMethod.GET);
         RequestBodySpec bodySpec = uriSpec.uri(relativeUrl);
-        System.out.println(bodySpec.retrieve().bodyToMono(String.class).block());
         return bodySpec.retrieve().bodyToMono(type).block();
     }
 }
